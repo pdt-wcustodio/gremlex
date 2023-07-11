@@ -47,6 +47,10 @@ defmodule Gremlex.Client do
 
   @spec start_link({String.t(), number(), String.t(), boolean()}) :: pid()
   def start_link({host, port, path, secure}) do
+    IO.puts("HOST: #{host}")
+    IO.puts("PORT: #{port}")
+    IO.puts("PATH: #{path}")
+    IO.puts("SECURE: #{secure}")
     case Socket.Web.connect(host, port, path: path, secure: secure) do
       {:ok, socket} ->
         GenServer.start_link(__MODULE__, socket, [])
